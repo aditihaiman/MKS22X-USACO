@@ -35,7 +35,20 @@ public class USACO {
     return 0;
   }
 
-  
+  public void stompDig(int[] ins) {
+    int max = 0;
+    for(int x = ins[0] - 1; x < ins[0] +2; x++) {
+      for(int y = ins[1] - 1; y < ins[0] +2; y++) {
+        if (stomps[x][y] > max) max = stomps[x][y];
+      }
+    }
+    max = max - ins[2];
+    for(int x = ins[0] - 1; x < ins[0] +2; x++) {
+      for(int y = ins[1] - 1; y < ins[0] +2; y++) {
+        if (stomps[x][y] > max) stomps[x][y] = max;
+      }
+    }
+  }
 
 
   // ------------------------ SILVER ----------------------- //
