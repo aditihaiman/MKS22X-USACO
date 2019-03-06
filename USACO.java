@@ -37,15 +37,15 @@ public class USACO {
 
   public void stompDig(int[] ins) {
     int max = 0;
-    for(int x = ins[0] - 1; x < ins[0] +2; x++) {
-      for(int y = ins[1] - 1; y < ins[0] +2; y++) {
-        if (stomps[x][y] > max) max = stomps[x][y];
+    for(int x = ins[0] - 1; x < ins[0]+2; x++) {
+      for(int y = ins[1] - 1; y < ins[0]+2; y++) {
+        if (lake[x][y] > max) max = lake[x][y];
       }
     }
     max = max - ins[2];
-    for(int x = ins[0] - 1; x < ins[0] +2; x++) {
-      for(int y = ins[1] - 1; y < ins[0] +2; y++) {
-        if (stomps[x][y] > max) stomps[x][y] = max;
+    for(int x = ins[0] - 1; x < ins[0]+2; x++) {
+      for(int y = ins[1] - 1; y < ins[0]+2; y++) {
+        if (lake[x][y] > max) lake[x][y] = max;
       }
     }
   }
