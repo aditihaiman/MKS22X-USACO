@@ -66,8 +66,26 @@ public class USACO {
 
   // ------------------------ SILVER ----------------------- //
 
+  public int[][] field;
+  public int row1, col1, sec;
+  public int[] start, end;
 
+  public void USACO1(String filename) throws FileNotFoundException{
+    File text = new File(filename);
+    Scanner inf = new Scanner(text);
+    row1 = inf.nextInt();
+    col1 = inf.nextInt();
+    sec = inf.nextInt();
+    for(int x = 0; x < row1; x++){
+      for(int y = 0; y < col1; y++){
 
+      }
+    }
+  }
+
+  public static int silver(String filename){
+    return 0;
+  }
 
 
 
