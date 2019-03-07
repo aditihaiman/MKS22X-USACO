@@ -31,20 +31,33 @@ public class USACO {
     }
   }
 
-  public static int bronze(String filename) {
-    return 0;
+  public static int bronze(String filename) throws FileNotFoundException{
+    USACO solve = new USACO(filename);
+    for(int x = 0; x < solve.stomps.length; x++){
+      solve.stompDig(solve.stomps[x]);
+    }
+    int sum = 0;
+    for(int x = 0; x < solve.row; x++) {
+      for(int y = 0; y < solve.col; y++) {
+        if( solve.elevation - solve.lake[x][y] > 0) sum+= solve.elevation - solve.lake[x][y];
+      }
+    }
+    return sum * 72 * 72;
   }
 
   public void stompDig(int[] ins) {
+    System.out.println(Arrays.toString(ins));
     int max = 0;
     for(int x = ins[0] - 1; x < ins[0]+2; x++) {
-      for(int y = ins[1] - 1; y < ins[0]+2; y++) {
-        if (lake[x][y] > max) max = lake[x][y];
+      for(int y = ins[1] - 1; y < ins[1]+2; y++) {
+        if (lake[x][y] >= max) {
+          max = lake[x][y];
+        }
       }
     }
     max = max - ins[2];
     for(int x = ins[0] - 1; x < ins[0]+2; x++) {
-      for(int y = ins[1] - 1; y < ins[0]+2; y++) {
+      for(int y = ins[1] - 1; y < ins[1]+2; y++) {
         if (lake[x][y] > max) lake[x][y] = max;
       }
     }
@@ -52,6 +65,7 @@ public class USACO {
 
 
   // ------------------------ SILVER ----------------------- //
+
 
 
 

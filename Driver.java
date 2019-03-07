@@ -15,6 +15,8 @@ public class Driver {
       System.out.println(Arrays.toString(test.lake[x]));
     }
 
+    System.out.println(USACO.bronze("makelake.in"));
+
     }
     catch(Exception e) {}
 
