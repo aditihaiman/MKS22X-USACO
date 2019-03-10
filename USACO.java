@@ -46,7 +46,7 @@ public class USACO {
   }
 
   public void stompDig(int[] ins) {
-    System.out.println(Arrays.toString(ins));
+    //System.out.println(Arrays.toString(ins));
     int max = 0;
     for(int x = ins[0] - 1; x < ins[0]+2; x++) { //finds the largest value within stompdigging area
       for(int y = ins[1] - 1; y < ins[1]+2; y++) {
@@ -70,26 +70,26 @@ public class USACO {
   public int row1, col1, sec;
   public int[] start, end;
 
-  public void readFile(String filename) throws FileNotFoundException{
-    File text = new File(filename);
-    Scanner inf = new Scanner(text);
-    row1 = inf.nextInt();
-    col1 = inf.nextInt();
-    sec = inf.nextInt();
-    field = new int[row1][col1];
-    for(int x = 0; x < row1; x++){
-      for(int y = 0; y < col1; y++){
-        field[x][y] = inf.nextInt();
-      }
-      inf.nextLine();
-    }
-    start = new int[2];
-    end = new int[2];
-    start[0] = inf.nextInt();
-    start[1] = inf.nextInt();
-    end[0] = inf.nextInt();
-    end[1] = inf.nextInt();
-  }
+  // public void readFile(String filename) throws FileNotFoundException{
+  //   File text = new File(filename);
+  //   Scanner inf = new Scanner(text);
+  //   row1 = inf.nextInt();
+  //   col1 = inf.nextInt();
+  //   sec = inf.nextInt();
+  //   field = new int[row1][col1];
+  //   for(int x = 0; x < row1; x++){
+  //     for(int y = 0; y < col1; y++){
+  //       field[x][y] = inf.nextInt();
+  //     }
+  //     inf.nextLine();
+  //   }
+  //   start = new int[2];
+  //   end = new int[2];
+  //   start[0] = inf.nextInt();
+  //   start[1] = inf.nextInt();
+  //   end[0] = inf.nextInt();
+  //   end[1] = inf.nextInt();
+  // }
 
   public static int silver(String filename) throws FileNotFoundException{
     //reading in file//
@@ -100,8 +100,11 @@ public class USACO {
     int sec = inf.nextInt();
     int[][] field = new int[row1][col1];
     for(int x = 0; x < row1; x++){
+      String temp = inf.next();
       for(int y = 0; y < col1; y++){
-        field[x][y] = inf.nextInt();
+        //System.out.println(inf.next());
+        if(temp.charAt(y)=='.') field[x][y] = 0;
+        else field[x][y] = -1;
       }
       inf.nextLine();
     }
