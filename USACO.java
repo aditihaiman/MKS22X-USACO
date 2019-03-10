@@ -110,19 +110,17 @@ public class USACO {
     int[] start = {inf.nextInt()-1, inf.nextInt()-1};
     int[] end = {inf.nextInt()-1, inf.nextInt()-1};
 
+  //  System.out.println(Arrays.deepToString(field));
+
 
     field[start[0]][start[1]] = 1; //sets up starting position
 
-    //System.out.println(Arrays.deepToString(field));
-    int[][] temp = new int[row1][col1];
+    int[][] temp = new int[row1][col1]; //temp array so that everything updates at once
     for(int t = 0; t < sec; t++) { //for each second
-      //System.out.println(Arrays.deepToString(temp));
-      copy(temp, field, row1, col1);
+      copy(temp, field, row1, col1); //update the temp array
       for(int a = 0; a < row1; a++){ //loop through field
         for(int b = 0; b < col1; b++){
           updateField(row1, col1, a, b, temp, field);
-          //System.out.println(Arrays.deepToString(field));
-
         }
       }
     }
@@ -131,7 +129,7 @@ public class USACO {
 
   public static void updateField(int row1, int col1, int x, int y, int[][] temp, int[][] field){
     if(temp[x][y]!=-1) {
-      int sum = 0;
+      int sum = 0; //creates sum of values above/below and right/left of given coordinates
       if(x+1 < row1 && temp[x+1][y]!=-1) sum+= temp[x+1][y];
       if(x-1 > -1 && temp[x-1][y]!=-1) sum+= temp[x-1][y];
       if(y+1 < col1 && temp[x][y+1]!=-1) sum+= temp[x][y+1];
