@@ -66,9 +66,9 @@ public class USACO {
 
   // ------------------------ SILVER ----------------------- //
 
-  public int[][] field;
-  public int row1, col1, sec;
-  public int[] start, end;
+  // public int[][] field;
+  // public int row1, col1, sec;
+  // public int[] start, end;
 
   // public void readFile(String filename) throws FileNotFoundException{
   //   File text = new File(filename);
@@ -102,7 +102,6 @@ public class USACO {
     for(int x = 0; x < row1; x++){
       String temp = inf.next();
       for(int y = 0; y < col1; y++){
-        //System.out.println(inf.next());
         if(temp.charAt(y)=='.') field[x][y] = 0;
         else field[x][y] = -1;
       }
@@ -111,34 +110,41 @@ public class USACO {
     int[] start = {inf.nextInt()-1, inf.nextInt()-1};
     int[] end = {inf.nextInt()-1, inf.nextInt()-1};
 
-    System.out.println(Arrays.toString(start));
-    System.out.println(Arrays.toString(end));
 
-    field[start[0]][start[1]] = 1;
+    field[start[0]][start[1]] = 1; //sets up starting position
 
-    System.out.println(Arrays.deepToString(field));
+    //System.out.println(Arrays.deepToString(field));
+    int[][] temp = new int[row1][col1];
+    for(int t = 0; t < sec; t++) { //for each second
+      //System.out.println(Arrays.deepToString(temp));
+      copy(temp, field, row1, col1);
+      for(int a = 0; a < row1; a++){ //loop through field
+        for(int b = 0; b < col1; b++){
+          updateField(row1, col1, a, b, temp, field);
+          //System.out.println(Arrays.deepToString(field));
 
-    for(int x = 0; x < sec; x++) { //for each second
-      int[][] temp = field;
-      for(int y = 0; y < row1; y++){ //loop through field
-        for(int z = 0; z < col1; z++){
-          updateField(row1, col1, y, z, temp, field);
         }
       }
     }
-
-
     return field[end[0]][end[1]];
   }
 
   public static void updateField(int row1, int col1, int x, int y, int[][] temp, int[][] field){
-    if(field[x][y]!=-1) {
+    if(temp[x][y]!=-1) {
       int sum = 0;
       if(x+1 < row1 && temp[x+1][y]!=-1) sum+= temp[x+1][y];
       if(x-1 > -1 && temp[x-1][y]!=-1) sum+= temp[x-1][y];
       if(y+1 < col1 && temp[x][y+1]!=-1) sum+= temp[x][y+1];
       if(y-1 > -1 && temp[x][y-1]!=-1) sum+= temp[x][y-1];
       field[x][y] = sum;
+    }
+  }
+
+  public static void copy(int[][] temp, int[][] field, int row1, int col1){
+    for(int x = 0; x < row1; x++){
+      for(int y = 0; y < col1; y++) {
+        temp[x][y] = field[x][y];
+      }
     }
   }
 
