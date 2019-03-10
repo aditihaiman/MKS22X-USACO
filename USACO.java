@@ -108,12 +108,38 @@ public class USACO {
       }
       inf.nextLine();
     }
-    int[] start = {inf.nextInt(), inf.nextInt()};
-    int[] end = {inf.nextInt(), inf.nextInt()};
+    int[] start = {inf.nextInt()-1, inf.nextInt()-1};
+    int[] end = {inf.nextInt()-1, inf.nextInt()-1};
+
+    System.out.println(Arrays.toString(start));
+    System.out.println(Arrays.toString(end));
+
+    field[start[0]][start[1]] = 1;
+
+    System.out.println(Arrays.deepToString(field));
+
+    for(int x = 0; x < sec; x++) { //for each second
+      int[][] temp = field;
+      for(int y = 0; y < row1; y++){ //loop through field
+        for(int z = 0; z < col1; z++){
+          updateField(row1, col1, y, z, temp, field);
+        }
+      }
+    }
 
 
+    return field[end[0]][end[1]];
+  }
 
-    return 0;
+  public static void updateField(int row1, int col1, int x, int y, int[][] temp, int[][] field){
+    if(field[x][y]!=-1) {
+      int sum = 0;
+      if(x+1 < row1 && temp[x+1][y]!=-1) sum+= temp[x+1][y];
+      if(x-1 > -1 && temp[x-1][y]!=-1) sum+= temp[x-1][y];
+      if(y+1 < col1 && temp[x][y+1]!=-1) sum+= temp[x][y+1];
+      if(y-1 > -1 && temp[x][y-1]!=-1) sum+= temp[x][y-1];
+      field[x][y] = sum;
+    }
   }
 
 
